@@ -1,4 +1,6 @@
 # This data structure holds the s hash tables needed for the locality algorithm.
+# This corresponds to data structure D in the lecture notes.
+
 from hash_table import *
 
 class LocalityDataStructure():
