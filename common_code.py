@@ -1,3 +1,6 @@
+# Andrew Braun and Himmat Singh Tiwana
+# Consulted Stephen Scinocca and Austin Beauchamp
+
 import sys
 
 # Class that represents a question. Has a question ID and a set of words.

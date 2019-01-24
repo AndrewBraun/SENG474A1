@@ -1,5 +1,5 @@
-# Andrew Braun
-# V00851919
+# Andrew Braun and Himmat Singh Tiwana
+# Consulted Stephen Scinocca and Austin Beauchamp
 
 # This is the simple algorithm for finding similarity.
 from common_code import *
