@@ -5,7 +5,6 @@
 # This corresponds to data structure D in the lecture notes.
 
 from hash_table import *
-import time
 
 class LocalityDataStructure():
 
@@ -22,17 +21,17 @@ class LocalityDataStructure():
 				hash_table.insert_question(question)
 			
 			
-	"""Gets a list of all question IDs that are similar to the given question."""
+	"""Gets a list of all questions that are similar to the given question."""
 	def find_similar_questions(self, question):
 	
-		similar_question_ids = []
+		similar_questions = []
 		
 		for hash_table in self.hash_tables:
-			retrieved_question_ids = hash_table.get_similar_question_ids(question)
+			retrieved_questions = hash_table.get_similar_questions(question)
 						
 			"""Remove duplicates and original question id."""
-			for retrieved_question_id in retrieved_question_ids:
-				if retrieved_question_id not in similar_question_ids and retrieved_question_id is not question.get_question_id():
-					similar_question_ids.append(retrieved_question_id)
+			for retrieved_question in retrieved_questions:
+				if retrieved_question not in similar_questions and retrieved_question is not question:
+					similar_questions.append(retrieved_question)
 		
-		return similar_question_ids
+		return similar_questions

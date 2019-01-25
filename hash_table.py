@@ -9,6 +9,7 @@ class HashTable():
 	def __init__(self):
 	
 		self.hash_table = {}
+		self.minhash_signature_hash_table = {}
 		self.minhash_functions = []
 	
 		for i in range(0, 6):
@@ -21,18 +22,24 @@ class HashTable():
 		if not minhash_signature in self.hash_table:
 			self.hash_table[minhash_signature] = []
 		
-		self.hash_table[minhash_signature].append(question.get_question_id())
+		self.hash_table[minhash_signature].append(question)
 		
 	"""Gets a MinHash signature for a question."""
 	def get_hash_signature(self, question):
 		minhash_signature = ""
+		question_id = question.get_question_id()
 		
-		for minhash_function in self.minhash_functions:
-			minhash_signature += str(minhash_function.get_minhash(question)) + ","
+		if question_id in self.minhash_signature_hash_table:
+			minhash_signature = self.minhash_signature_hash_table[question_id]
 		
+		else:
+			for minhash_function in self.minhash_functions:
+				minhash_signature += str(minhash_function.get_minhash(question)) + ","
+			self.minhash_signature_hash_table[question_id] = minhash_signature
+			
 		return minhash_signature
 	
-	"""Gets a list of similar question IDs, or an empty list if none are found."""
-	def get_similar_question_ids(self, question):
+	"""Gets a list of similar questions, or an empty list if none are found."""
+	def get_similar_questions(self, question):
 		
 		return self.hash_table[self.get_hash_signature(question)]
