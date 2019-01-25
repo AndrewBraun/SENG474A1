@@ -5,6 +5,7 @@
 
 from locality_data_structure import *
 from common_code import *
+import time
 
 def main():
 
@@ -18,8 +19,12 @@ def main():
 	
 	locality_data_structure = LocalityDataStructure()
 	
-	for question in questions:
-		locality_data_structure.insert_question(question)
+	start_time = time.time()
+	
+	locality_data_structure.insert_questions(questions)
+	
+	print("Time to insert similar questions: " + str(time.time() - start_time))
+	start_time = time.time()
 	
 	for question in questions:
 	
@@ -33,10 +38,11 @@ def main():
 			
 			# Only add question IDs that have a verified Jaccard similarity (no false positives)
 			
-			if jaccard_similarity(question.get_words(), question2.get_words()) >= 0.6:
+			if similar_question_id not in similarity_table.get_similar_question_ids(question.get_question_id()) and jaccard_similarity(question.get_words(), question2.get_words()) >= 0.6:
 			
 				similarity_table.add_similar_item(question.get_question_id(), similar_question_id)
 		
+	print("Time to find similar questions: " + str(time.time() - start_time))
 	output_to_file(questions, similarity_table)
 
 if __name__ == '__main__':

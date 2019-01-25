@@ -5,6 +5,7 @@
 # This corresponds to data structure D in the lecture notes.
 
 from hash_table import *
+import time
 
 class LocalityDataStructure():
 
@@ -14,11 +15,12 @@ class LocalityDataStructure():
 		for i in range(0,14):
 			self.hash_tables.append(HashTable())
 
-	"""Hashes a question into every hash table."""
-	def insert_question(self, question):
-	
+	"""Insert every question into the hash tables."""
+	def insert_questions(self, questions):
 		for hash_table in self.hash_tables:
-			hash_table.insert_question(question)
+			for question in questions:
+				hash_table.insert_question(question)
+			
 			
 	"""Gets a list of all question IDs that are similar to the given question."""
 	def find_similar_questions(self, question):

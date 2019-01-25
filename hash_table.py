@@ -29,7 +29,7 @@ class HashTable():
 		
 		for minhash_function in self.minhash_functions:
 			minhash_signature += str(minhash_function.get_minhash(question)) + ","
-			
+		
 		return minhash_signature
 	
 	"""Gets a list of similar question IDs, or an empty list if none are found."""
